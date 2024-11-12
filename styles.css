@@ -100,7 +100,7 @@ header nav {
 .logo-square {
     width: 40px;
     height: 40px;
-    background: linear-gradient(135deg, #F5B800 0%, #FF8A00 100%);
+    background: linear-gradient(135deg, #4FC3F7 0%, #2196F3 100%);
     border-radius: 8px;
     display: flex;
     align-items: center;
@@ -120,7 +120,7 @@ header nav {
     width: 40px;
     height: 40px;
     background: white;
-    border: 3px solid #F5B800;
+    border: 3px solid #4FC3F7;
     border-radius: 50%;
     position: relative;
     display: flex;
@@ -134,7 +134,7 @@ header nav {
     position: absolute;
     width: 100%;
     height: 100%;
-    border: 2px solid #F5B800;
+    border: 2px solid #4FC3F7;
     border-radius: 50%;
     animation: pulse 2s infinite;
 }
@@ -158,7 +158,7 @@ header nav {
     position: absolute;
     width: 100%;
     height: 100%;
-    background: #F5B800;
+    background: #4FC3F7;
     border-radius: 0 50% 0 50%;
     transform: rotate(45deg);
     transition: transform 0.3s ease;
@@ -177,11 +177,10 @@ header nav {
     font-size: 1.2rem;
     font-weight: bold;
     background: linear-gradient(135deg, #333 0%, #666 100%);
-    background-clip: text;
+    -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     transition: opacity 0.3s ease;
 }
-
 
 .logo-container:hover .logo-text {
     opacity: 0.8;
@@ -194,64 +193,105 @@ header nav {
 }
 
 .dropdown-button {
-    background: none;
-    border: none;
-    padding: 1rem;
-    cursor: pointer;
-    font-size: 1rem;
+    position: relative;
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    color: #333;
-    transition: color 0.3s ease;
-}
-
-.dropdown-button:hover {
-    color: #F5B800;
+    justify-content: center;
+    gap: 12px;
+    padding: 12px 36px;
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.48s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .dropdown-button::after {
-    content: '▼';
+    content: "▼";
     font-size: 0.8em;
-    transition: transform 0.3s ease;
+    transition: transform 0.48s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-.dropdown:hover .dropdown-button::after {
-    transform: rotate(180deg);
+.dropdown:hover .dropdown-button {
+    color: #ffffff;
+    border-radius: 16px 16px 0 0;
+}
+
+.dropdown-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #4FC3F7;
+    z-index: -1;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.48s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.dropdown:hover .dropdown-button::before {
+    transform: scaleX(1);
+    transform-origin: right;
 }
 
 .dropdown-content {
-    display: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     position: absolute;
-    background-color: #fff;
-    min-width: 200px;
-    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-    z-index: 1;
-    border-radius: 4px;
-    padding: 0.5rem 0;
+    top: 100%;
+    border-radius: 0 0 16px 16px;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    border: 1px solid #4FC3F7;
     opacity: 0;
-    transform: translateY(-10px);
-    transition: opacity 0.3s ease, transform 0.3s ease;
+    visibility: hidden;
+    transform: translateY(-12px);
+    transition: all 0.48s cubic-bezier(0.23, 1, 0.32, 1);
+    z-index: 1;
+    pointer-events: none;
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .dropdown:hover .dropdown-content {
-    display: block;
     opacity: 1;
+    visibility: visible;
     transform: translateY(0);
+    pointer-events: auto;
+    border-top: transparent;
 }
 
 .dropdown-content a {
-    color: #333;
-    padding: 0.75rem 1rem;
-    text-decoration: none;
-    display: block;
-    font-size: 0.9rem;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    width: 100%;
+    padding: 12px 24px;
+    position: relative;
+    text-align: center;
+    transition: all 0.48s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.dropdown-content a::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: scaleX(0);
+    width: 100%;
+    height: 100%;
+    background-color: #4FC3F7;
+    z-index: -1;
+    transform-origin: left;
+    transition: transform 0.48s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.dropdown-content a:hover::before {
+    transform: scaleX(1);
+    transform-origin: right;
 }
 
 .dropdown-content a:hover {
-    background-color: #f5f5f5;
-    color: #F5B800;
+    color: #ffffff;
 }
 
 /* Search Bar Styles */
@@ -272,7 +312,7 @@ header nav {
 
 .search-input:focus {
     outline: none;
-    border-color: #F5B800;
+    border-color: #4FC3F7;
     width: 320px;
 }
 
@@ -284,7 +324,7 @@ header nav {
 }
 
 .search-input:focus + .search-icon {
-    color: #F5B800;
+    color: #4FC3F7;
 }
 
 /* External Link Styles */
@@ -299,7 +339,7 @@ header nav {
 }
 
 .external-link:hover {
-    color: #F5B800;
+    color: #4FC3F7;
 }
 
 .external-link::after {
@@ -322,12 +362,12 @@ header nav {
 }
 
 .guide-link:hover {
-    color: #F5B800;
+    color: #4FC3F7;
 }
 
 /* Journal Cover Styles */
 .journal-cover {
-    background-color: #F5B800;
+    background-color: #E1F5FE;
     padding: 2rem 0;
 }
 
@@ -352,10 +392,9 @@ header nav {
     margin-bottom: 1rem;
 }
 
-
 /* Journal Header Styles */
 .journal-header {
-    background-color: #F5B800;
+    background-color: #E1F5FE;
     padding: 2rem 0;
     margin-bottom: 2rem;
 }
@@ -412,7 +451,7 @@ header nav {
 }
 
 .editors {
-    background-color: #F5B800;
+    background-color: #E1F5FE;
     padding: 2rem;
     border-radius: 5px;
     margin-bottom: 2rem;
@@ -462,8 +501,8 @@ header nav {
 }
 
 .article-tabs button.active {
-    border-bottom: 2px solid #F5B800;
-    color: #F5B800;
+    border-bottom: 2px solid #4FC3F7;
+    color: #4FC3F7;
 }
 
 .article {
@@ -500,7 +539,7 @@ header nav {
 
 /* New navigation styles */
 .submit-article {
-    background-color: #F5B800;
+    background-color: #4FC3F7;
     color: #333;
     padding: 0.5rem 1rem;
     border-radius: 4px;
@@ -510,7 +549,7 @@ header nav {
 }
 
 .submit-article:hover {
-    background-color: #e5a800;
+    background-color: #29B6F6;
 }
 
 /* Footer Styles */
@@ -545,7 +584,7 @@ footer {
 }
 
 .footer-section a:hover {
-    color: #F5B800;
+    color: #4FC3F7;
 }
 
 .copyright {
